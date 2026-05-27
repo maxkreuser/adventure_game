@@ -9,13 +9,14 @@
     <body>
         <div id="game-container">
             <h1>Your Adventure Game</h1>
-            <div id="question-container">
-                <p id="question">Your adventure begins now...</p>
+            <div id="text-container">
+                <p id="text">Your adventure begins now...</p>
             </div>
-            <ul id="answers">
-                <!-- Answer buttons will be injected here by JavaScript -->
-            </ul>
-            <button id="next-btn" onclick="nextQuestion()">Next</button>
+            <button id="next-btn" /*onclick="nextText()"*/>Next</button>
+            <div id="answers-btn-container">
+                <button id="answer-btn-1" /*onclick="answerQuestion()"*/>Answer 1</button>
+                <button id="answer-btn-2" /*onclick="answerQuestion()"*/>Answer 2</button>
+            </div>
         </div>
         <script src="script.js"></script>
     </body>
