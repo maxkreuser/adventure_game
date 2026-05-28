@@ -1,3 +1,11 @@
 #answers-btn-container {
     display: none;
 }
+
+#game-status {
+    display: none;
+}
+
+#retry-btn {
+    display: none;
+}
