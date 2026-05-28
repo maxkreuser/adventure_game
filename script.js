@@ -30,7 +30,7 @@ const gameScript = {
             "He is walking slowly, you notice he has an open wound on his cheek.",
             "Do you ask him if he needs help or walk by quickly at a distance?"
         ],
-        answers: ["help guard", "avoid guard"]
+        answers: ["avoid guard", "help guard"]
     },
     help_guard: {
         text: [
@@ -85,7 +85,7 @@ const gameScript = {
             "You walk towards the skybridge to reach the neighboring building.",
             "You pass a stairwell. Do you take it or keep walking to the skybridge?"
         ],
-        answers: ["stairwell", "skybridge"]
+        answers: ["skybridge", "stairwell"]
     },
     skybridge: {
         text: [
