@@ -124,7 +124,7 @@ const gameScript = {
         text: [
             "You take your Samsung Galaxy Note 7, open 20+ apps until smoke come out of it.",
             "You throw your phone onto the create as the phone explodes.",
-            "As parts of the creature fall from the air, you run to the outside door.",
+            "Parts of the creature fall from the air, you run to the outside door.",
             "You see your friends car. You enter it and speed away."
         ],
         gameStatus: "WIN - CONGRATULATION"
@@ -167,7 +167,7 @@ nextBtn.addEventListener("click", () => {
             status.style.display = "block"
             status.textContent = path.gameStatus
             if (status.textContent === "DEAD") {
-                retryBtn.style.display = "block"
+                retryBtn.style.display = "inline-block"
             }
         }
     }
@@ -212,7 +212,7 @@ retryBtn.addEventListener("click", () => {
     path = gameScript.start
     line = 0
     text.textContent = "Your adventure begins now..."
-    nextBtn.style.display = "block"
+    nextBtn.style.display = "inline-block"
     status.style.display = "none"         
     retryBtn.style.display = "none"
 })

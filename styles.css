@@ -1,3 +1,45 @@
+
+* {
+  font-family: "Workbench", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "BLED" 0,
+    "SCAN" 0;
+}
+
+#game-container {
+    border: 1px solid #bbb;
+    background-color: #eee;
+    border-radius: 26px;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 26px 26px 26px;
+}
+
+#game-container > h1 {
+    /* text-decoration: underline red; */
+    border-bottom: solid red;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+#text {
+    font-size: 28px;
+    height: 80px;
+    max-width: 600px;
+    margin: auto;
+}
+
+button {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 16px;
+    background-color: rgba(255, 107, 107, 0.653);
+}
+
 #answers-btn-container {
     display: none;
 }
@@ -8,4 +50,5 @@
 
 #retry-btn {
     display: none;
+    text-align: inherit;
 }
