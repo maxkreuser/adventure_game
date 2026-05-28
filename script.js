@@ -141,39 +141,22 @@ let path = gameScript.start
 let line = 0
 
 nextBtn.addEventListener("click", () => {
-
-    // Make 'Next' and 'Answer' buttons alternate display visibility
-    // if (Object.hasOwn(gameScript[path], "answers")) {
-    //     console.log("method works")
-    //     nextBtn.style.display = "none"
-    //     answersBtn.style.display = "inline"
-    //     answerBtn1.textContent = gameScript[path].answers[0]
-    //     answerBtn2.textContent = gameScript[path].answers[1]
-    // } 
-    // else {
-    //     nextBtn.style.display = "inline"
-    //     answersBtn.style.display = "none"
-    // }
-
-    console.log(path.text.length)
-
-    if (Object.hasOwn(path, "answers")) {
-        if (line === path.text.length - 1) {
+    if (line === path.text.length - 1) {
+        if (Object.hasOwn(path, "answers")) {
             nextBtn.style.display = "none"
             answersBtn.style.display = "inline"
             answerBtn1.textContent = path.answers[0]
             answerBtn2.textContent = path.answers[1]
         } 
-    } else if (Object.hasOwn(path, "gameStatus")) {
-            if (line === path.text.length - 1) {
-                nextBtn.style.display = "none"
-                answersBtn.style.display = "none"
-                status.style.display = "block"
-                status.textContent = path.gameStatus
-                if (status.textContent === "DEAD") {
-                    retryBtn.style.display = "block"
-                }
+        else if (Object.hasOwn(path, "gameStatus")) {
+            nextBtn.style.display = "none"
+            answersBtn.style.display = "none"
+            status.style.display = "block"
+            status.textContent = path.gameStatus
+            if (status.textContent === "DEAD") {
+                retryBtn.style.display = "block"
             }
+        }
     }
     
     text.textContent = path.text[line]
@@ -183,7 +166,6 @@ nextBtn.addEventListener("click", () => {
 function pathBtnHandler(btn) {
     const newPath = btn.textContent.replace(" ", "_")
     path = gameScript[newPath]
-    console.log(path)
     line = 0
     text.textContent = path.text[line]
     line++
