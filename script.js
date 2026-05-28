@@ -135,17 +135,68 @@ const gameScript = {
 const text = document.getElementById("text")
 const nextBtn = document.getElementById("next-btn")
 const answersBtn = document.getElementById("answers-btn-container")
-const answerBtn1 = document.getElementById("answer-btn-1")
-const answerBtn2 = document.getElementById("answer-btn-2")
+// const answerBtn1 = document.getElementById("answer-btn-1")
+// const answerBtn2 = document.getElementById("answer-btn-2")
 const status = document.getElementById("game-status")
 const retryBtn = document.getElementById("retry-btn")
 
 // Variables holding game's current progress/location
-let path = gameScript.start
+let currentState = gameScript.start
 let line = 0
 
 // --------------------------------------
 // Event Listeners and Functions
+
+/**
+ * This helper function is built for the assignment requirements.
+ * It creates and inserts from the start the answer buttons and their
+ * appearance changes by toggling their display property. The content
+ * of the text is also changed through event listeners.
+ * @param {int} number - assigns a number to the button id attribute 
+ */
+function addAnswerButton(number) {
+    const button = document.createElement("button")
+    button.setAttribute("id", `answer-btn-${number}`)
+    button.style.marginRight = "6px"
+    button.style.marginLeft = "6px"
+    answersBtn.appendChild(button)
+}
+
+addAnswerButton(1)
+addAnswerButton(2)
+
+const answerBtn1 = document.getElementById("answer-btn-1")
+const answerBtn2 = document.getElementById("answer-btn-2")
+
+/**
+ * Renders on the UI the text content based on the object holding
+ * the current story content. It displays on line of text at a time
+ * for the current scenario and will display the answer/choices buttons
+ * or the game results at the end of the object content.
+ * @param {object} currentState - location of the story line
+ */
+function renderQuestion(currentState) {
+    if (line === currentState.text.length - 1) {
+        if (Object.hasOwn(currentState, "answers")) {
+            nextBtn.style.display = "none"
+            answersBtn.style.display = "block"
+            answerBtn1.textContent = currentState.answers[0]
+            answerBtn2.textContent = currentState.answers[1]
+        } 
+        else if (Object.hasOwn(currentState, "gameStatus")) {
+            nextBtn.style.display = "none"
+            answersBtn.style.display = "none"
+            status.style.display = "block"
+            status.textContent = currentState.gameStatus
+            if (status.textContent === "DEAD") {
+                retryBtn.style.display = "inline-block"
+            }
+        }
+    }
+    
+    text.textContent = currentState.text[line]
+    line++
+}
 
 /**
  * Next Button Event Listener & Function
@@ -154,26 +205,7 @@ let line = 0
  * or when the game ends.
  */
 nextBtn.addEventListener("click", () => {
-    if (line === path.text.length - 1) {
-        if (Object.hasOwn(path, "answers")) {
-            nextBtn.style.display = "none"
-            answersBtn.style.display = "inline"
-            answerBtn1.textContent = path.answers[0]
-            answerBtn2.textContent = path.answers[1]
-        } 
-        else if (Object.hasOwn(path, "gameStatus")) {
-            nextBtn.style.display = "none"
-            answersBtn.style.display = "none"
-            status.style.display = "block"
-            status.textContent = path.gameStatus
-            if (status.textContent === "DEAD") {
-                retryBtn.style.display = "inline-block"
-            }
-        }
-    }
-    
-    text.textContent = path.text[line]
-    line++
+    renderQuestion(currentState)
 })
 
 /**
@@ -184,9 +216,9 @@ nextBtn.addEventListener("click", () => {
  */
 function pathBtnHandler(btn) {
     const newPath = btn.textContent.replace(" ", "_")
-    path = gameScript[newPath]
+    currentState = gameScript[newPath]
     line = 0
-    text.textContent = path.text[line]
+    text.textContent = currentState.text[line]
     line++
 
     nextBtn.style.display = "inline"
@@ -209,7 +241,7 @@ answerBtn2.addEventListener("click", () => {
  * Re-initializes the game status and the interface display.
  */
 retryBtn.addEventListener("click", () => {
-    path = gameScript.start
+    currentState = gameScript.start
     line = 0
     text.textContent = "Your adventure begins now..."
     nextBtn.style.display = "inline-block"
