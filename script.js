@@ -84,6 +84,48 @@ const gameScript = {
             "You pass a stairwell. Do you take it or keep walking to the skybridge?"
         ],
         answers: ["stairwell", "skybridge"]
+    },
+    skybridge: {
+        text: [
+            "On the skybridge, you feel a wind current and see paper sheets floating in the air.",
+            "A window is broken. You look outside and see a group of people.",
+            "They are leaning over an unconscious person and bitting his body.",
+            "Panic! You run to the new building. There you see your favorite teacher.",
+            "He asks if you need help. Do you say 'yes' or 'no'?"
+        ],
+        answers: ["yes", "no"]
+    },
+    yes: {
+        text: [
+            "He says not to worry. You calm down.",
+            "You feel a painful pinch in your neck. You see a syringe and your teacher smiling. Your vision goes red."
+        ],
+        gameStatus: "DEAD"
+    },
+    no: {
+        text: [
+            "You run towards the large staircase and hear a loud growling.",
+            "Going down the staircase, a large creature appears at the bottom.",
+            "It is third pig, third wolf, third man wearing a torn up guard uniform.",
+            "Do you jump down from the side or use your phone?"
+        ],
+        answers: ["jump", "phone"]
+    },
+    jump: {
+        text: [
+            "As you land you break your ankle and can't get up.",
+            "The creature appears above you. It opens its mouth. Green red blood drips onto your face."
+        ],
+        gameStatus: "DEAD"
+    },
+    phone: {
+        text: [
+            "You take your Samsung Galaxy Note 7, open 20+ apps until smoke come out of it.",
+            "You throw your phone onto the create as the phone explodes.",
+            "As parts of the creature fall from the air, you run to the outside door.",
+            "You see your friends car. You enter it and speed away."
+        ],
+        gameStatus: "WIN - CONGRATULATION"
     }
 }
 
@@ -128,7 +170,9 @@ nextBtn.addEventListener("click", () => {
                 answersBtn.style.display = "none"
                 status.style.display = "block"
                 status.textContent = path.gameStatus
-                retryBtn.style.display = "block"
+                if (status.textContent === "DEAD") {
+                    retryBtn.style.display = "block"
+                }
             }
     }
     
