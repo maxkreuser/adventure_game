@@ -91,7 +91,7 @@ const gameScript = {
         text: [
             "On the skybridge, you feel a wind current and see paper sheets floating in the air.",
             "A window is broken. You look outside and see a group of people.",
-            "They are leaning over an unconscious person and bitting his body.",
+            "They are leaning over an unconscious person and biting his body.",
             "Panic! You run to the new building. There you see your favorite teacher.",
             "He asks if you need help. Do you say 'yes' or 'no'?"
         ],
@@ -127,7 +127,7 @@ const gameScript = {
             "Parts of the creature fall from the air, you run to the outside door.",
             "You see your friends car. You enter it and speed away."
         ],
-        gameStatus: "WIN - CONGRATULATION"
+        gameStatus: "WIN - CONGRATULATIONS"
     }
 }
 

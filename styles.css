@@ -45,6 +45,8 @@ button {
 
 #game-status {
     display: none;
+    margin-top: 0;
+    /* font-size: 28px; */
 }
 
 #retry-btn {
