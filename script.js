@@ -1,3 +1,5 @@
+// Story script for entire game. Took me a lot of time to figure the structure to work with
+// event listener functions. Really proud of myself with this one.
 const gameScript = {
     start: {
         text: [
@@ -129,6 +131,7 @@ const gameScript = {
     }
 }
 
+// Storing the HTML elements inside JS variables
 const text = document.getElementById("text")
 const nextBtn = document.getElementById("next-btn")
 const answersBtn = document.getElementById("answers-btn-container")
@@ -137,9 +140,19 @@ const answerBtn2 = document.getElementById("answer-btn-2")
 const status = document.getElementById("game-status")
 const retryBtn = document.getElementById("retry-btn")
 
+// Variables holding game's current progress/location
 let path = gameScript.start
 let line = 0
 
+// --------------------------------------
+// Event Listeners and Functions
+
+/**
+ * Next Button Event Listener & Function
+ * Move the story script forward.
+ * Also manipulated the button displays when a decision must be taken
+ * or when the game ends.
+ */
 nextBtn.addEventListener("click", () => {
     if (line === path.text.length - 1) {
         if (Object.hasOwn(path, "answers")) {
@@ -163,6 +176,12 @@ nextBtn.addEventListener("click", () => {
     line++
 })
 
+/**
+ * Function For Answer Buttons - Path Decision
+ * Takes text content inside button element to assign value for new game path.
+ * Also manipulates display of buttons on the DOM.
+ * @param {object} btn - the HTML button element representing a path/decision in the game.
+ */
 function pathBtnHandler(btn) {
     const newPath = btn.textContent.replace(" ", "_")
     path = gameScript[newPath]
@@ -174,6 +193,9 @@ function pathBtnHandler(btn) {
     answersBtn.style.display = "none"
 }
 
+/**
+ * Answer Buttons Event Listeners
+ */
 answerBtn1.addEventListener("click", () => {
     pathBtnHandler(answerBtn1)
 })
@@ -182,6 +204,10 @@ answerBtn2.addEventListener("click", () => {
     pathBtnHandler(answerBtn2)
 })
 
+/**
+ * Retry Button Event Listener & Function
+ * Re-initializes the game status and the interface display.
+ */
 retryBtn.addEventListener("click", () => {
     path = gameScript.start
     line = 0
