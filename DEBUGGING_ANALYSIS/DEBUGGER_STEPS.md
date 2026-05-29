@@ -2,7 +2,7 @@
 
 ## Description
 
-I am 
+I am analyzing the process of debugging and at the same time the working mechanism of javascript.
 
 ## Author
 
